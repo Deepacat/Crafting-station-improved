@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TransferHandler implements IRecipeTransferInfo {
+public class JeiTransferHandler implements IRecipeTransferInfo {
 
     @Override
     public Class getContainerClass() {

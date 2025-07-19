@@ -10,7 +10,7 @@ import tfar.craftingstation.client.CraftingStationScreen;
 
 @JeiPlugin
 public class JeiClientPlugin implements IModPlugin {
-    
+
     @Override
     public ResourceLocation getPluginUid() {
         return new ResourceLocation(CraftingStation.MODID);
@@ -18,7 +18,7 @@ public class JeiClientPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(new TransferHandler());
+        registration.addRecipeTransferHandler(new tfar.craftingstation.jei.JeiTransferHandler());
     }
 
     @Override

@@ -11,13 +11,13 @@ import tfar.craftingstation.CraftingStationMenu;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class CraftingStationTransferHandler implements SimpleTransferHandler {
+public class ReiTransferHandler implements SimpleTransferHandler {
 
     private final Class<CraftingStationMenu> containerClass;
     private final CategoryIdentifier<DefaultCraftingDisplay<?>> categoryIdentifier;
 
-    public CraftingStationTransferHandler(Class<CraftingStationMenu> containerClass,
-                                          CategoryIdentifier<DefaultCraftingDisplay<?>> categoryIdentifier) {
+    public ReiTransferHandler(Class<CraftingStationMenu> containerClass,
+                              CategoryIdentifier<DefaultCraftingDisplay<?>> categoryIdentifier) {
 
         this.containerClass = containerClass;
         this.categoryIdentifier = categoryIdentifier;

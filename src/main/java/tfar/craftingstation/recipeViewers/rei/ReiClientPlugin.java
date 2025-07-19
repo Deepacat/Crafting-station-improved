@@ -32,7 +32,7 @@ public class ReiClientPlugin implements REIClientPlugin {
 
   @Override
   public void registerTransferHandlers(TransferHandlerRegistry registry) {
-    registry.register(new CraftingStationTransferHandler(CraftingStationMenu.class,CRAFTING));
+    registry.register(new tfar.craftingstation.rei.ReiTransferHandler(CraftingStationMenu.class,CRAFTING));
   }
 
   @Override

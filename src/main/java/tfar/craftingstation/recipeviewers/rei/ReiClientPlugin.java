@@ -1,4 +1,4 @@
-package tfar.craftingstation.rei;
+package tfar.craftingstation.recipeviewers.rei;
 
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
@@ -32,7 +32,7 @@ public class ReiClientPlugin implements REIClientPlugin {
 
   @Override
   public void registerTransferHandlers(TransferHandlerRegistry registry) {
-    registry.register(new tfar.craftingstation.rei.ReiTransferHandler(CraftingStationMenu.class,CRAFTING));
+    registry.register(new ReiTransferHandler(CraftingStationMenu.class,CRAFTING));
   }
 
   @Override

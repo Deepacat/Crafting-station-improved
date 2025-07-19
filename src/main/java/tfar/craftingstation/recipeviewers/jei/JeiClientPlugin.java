@@ -1,4 +1,4 @@
-package tfar.craftingstation.jei;
+package tfar.craftingstation.recipeviewers.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -18,7 +18,7 @@ public class JeiClientPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(new tfar.craftingstation.jei.JeiTransferHandler());
+        registration.addRecipeTransferHandler(new JeiTransferHandler());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package tfar.craftingstation.jei;
+package tfar.craftingstation.recipeviewers.jei;
 
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.RecipeType;

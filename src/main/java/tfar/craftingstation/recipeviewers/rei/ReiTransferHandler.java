@@ -1,4 +1,4 @@
-package tfar.craftingstation.rei;
+package tfar.craftingstation.recipeviewers.rei;
 
 import me.shedaniel.rei.api.client.registry.transfer.simple.SimpleTransferHandler;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;

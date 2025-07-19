@@ -1,4 +1,4 @@
-package tfar.craftingstation.rei;
+package tfar.craftingstation.recipeviewers.rei;
 
 import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
 import me.shedaniel.rei.forge.REIPluginCommon;

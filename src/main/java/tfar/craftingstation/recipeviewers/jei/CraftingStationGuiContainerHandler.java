@@ -1,4 +1,4 @@
-package tfar.craftingstation.jei;
+package tfar.craftingstation.recipeviewers.jei;
 
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import net.minecraft.client.renderer.Rect2i;

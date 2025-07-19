@@ -1,4 +1,4 @@
-package tfar.craftingstation.recipeViewers.emi;
+package tfar.craftingstation.recipeviewers.emi;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;

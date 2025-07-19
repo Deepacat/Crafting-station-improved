@@ -1,4 +1,4 @@
-package tfar.craftingstation.recipeViewers.emi;
+package tfar.craftingstation.recipeviewers.emi;
 
 import com.google.common.collect.Lists;
 import dev.emi.emi.api.recipe.EmiPlayerInventory;

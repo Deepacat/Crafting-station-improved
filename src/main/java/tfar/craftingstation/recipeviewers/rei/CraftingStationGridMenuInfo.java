@@ -1,4 +1,4 @@
-package tfar.craftingstation.rei;
+package tfar.craftingstation.recipeviewers.rei;
 
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.transfer.info.MenuInfoContext;

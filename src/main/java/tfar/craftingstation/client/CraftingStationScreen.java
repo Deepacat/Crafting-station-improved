@@ -70,7 +70,8 @@ public class CraftingStationScreen extends AbstractContainerScreen<CraftingStati
     });
     this.addRenderableWidget(priority);
     if (!ModList.get().isLoaded("craftingtweaks")) {
-      ClearButton clear = new ClearButton(priority.getX() + 19, topPos + 16, 13, 13, b -> PacketHandler.INSTANCE.sendToServer(new C2SClearPacket()));
+      ClearButton clear = new ClearButton(priority.getX() + 19, topPos + 16, 13, 13, b ->
+              PacketHandler.INSTANCE.sendToServer(new C2SClearPacket(hasShiftDown())));
       clear.setTooltip(Tooltip.create(Component.translatable("text.crafting_station.clear")));
       this.addRenderableWidget(clear);
     }

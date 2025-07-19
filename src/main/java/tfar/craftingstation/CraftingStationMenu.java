@@ -1,10 +1,8 @@
 package tfar.craftingstation;
 
 import com.illusivesoulworks.polymorph.common.crafting.RecipeSelection;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.*;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fml.loading.FMLLoader;
 import tfar.craftingstation.init.ModMenuTypes;
 import tfar.craftingstation.network.PacketHandler;
 import tfar.craftingstation.network.S2CLastRecipePacket;
@@ -84,7 +82,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
     }
 
     public CraftingStationMenu(int id, Inventory inv, BlockPos pos) {
-        this(id, inv, pos,new SimpleContainerData(1));
+        this(id, inv, pos, new SimpleContainerData(1));
     }
 
 
@@ -163,7 +161,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
         if (ModList.get().isLoaded("polymorph")) {
             return RecipeSelection.getPlayerRecipe(menu, RecipeType.CRAFTING, inv, world, player).stream().findFirst().orElse(null);
         }
-        return world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING,inv,world).stream().findFirst().orElse(null);
+        return world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, inv, world).stream().findFirst().orElse(null);
     }
 
     //                CraftingStation.LOGGER.error("Bad recipe found: " + recipe.getId().toString());
@@ -185,7 +183,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
     private void addSideContainerSlots(List<BlockEntity> tes, Direction dir, int xPos, int yPos) {
         for (int i = 0; i < tes.size(); i++) {
             BlockEntity te = tes.get(i);
-            containerNames.add(te instanceof MenuProvider menuProvider? menuProvider.getDisplayName() : te.getBlockState().getBlock().getName());
+            containerNames.add(te instanceof MenuProvider menuProvider ? menuProvider.getDisplayName() : te.getBlockState().getBlock().getName());
             final int number = i;
             te.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
                 int size = h.getSlots();
@@ -210,7 +208,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
     }
 
     void setCurrentContainer(int container) {
-        data.set(0,container);
+        data.set(0, container);
     }
 
     public Container getContainerFromId(int id) {
@@ -220,7 +218,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
         return null;
     }
 
-     public int getCurrentContainer() {
+    public int getCurrentContainer() {
         return data.get(0);
     }
 
@@ -246,6 +244,23 @@ public class CraftingStationMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return true;
+    }
+
+    public void clearInputSlot(Player player, int idx, boolean toSideInvs) {
+        if (toSideInvs && hasSideContainers) {
+            Slot slot = this.slots.get(idx);
+            if (!slot.hasItem()) return;
+            ItemStack ret = slot.getItem().copy();
+            ItemStack stack = ret.copy();
+            boolean changed = refillSideInventory(stack);
+            changed |= moveToSideInventory(stack);
+            changed |= moveToPlayerInventory(stack);
+            if (changed) {
+                notifySlotAfterTransfer(player, stack, ret, slot);
+            }
+        } else {
+            quickMoveStack(player, idx);
+        }
     }
 
     @Nonnull
@@ -375,7 +390,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
 
         // if we have a recipe, fetch its result
         if (lastRecipe != null) {
-            itemstack = lastRecipe.assemble(inv,world.registryAccess());
+            itemstack = lastRecipe.assemble(inv, world.registryAccess());
         }
         // set the slot on both sides, client is for display/so the client knows about the recipe
         result.setItem(0, itemstack);
@@ -402,7 +417,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
 
     private void syncResultToAllOpenWindows(final ItemStack stack, List<ServerPlayer> players) {
         players.forEach(otherPlayer -> {
-            otherPlayer.containerMenu.setItem(0,this.getStateId(), stack);
+            otherPlayer.containerMenu.setItem(0, this.getStateId(), stack);
             //otherPlayer.connection.sendPacket(new SPacketSetSlot(otherPlayer.openContainer.windowId, SLOT_RESULT, stack));
         });
     }
@@ -587,7 +602,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
     public void updateLastRecipeFromServer(Recipe<CraftingContainer> recipe) {
         lastRecipe = recipe;
         // if no recipe, set to empty to prevent ghost outputs when another player grabs the result
-        this.craftResult.setItem(0, recipe != null ? recipe.assemble(craftMatrix,world.registryAccess()) : ItemStack.EMPTY);
+        this.craftResult.setItem(0, recipe != null ? recipe.assemble(craftMatrix, world.registryAccess()) : ItemStack.EMPTY);
     }
 
     public boolean needsScroll() {

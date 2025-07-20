@@ -164,10 +164,6 @@ public class CraftingStationMenu extends AbstractContainerMenu {
         return world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, inv, world).stream().findFirst().orElse(null);
     }
 
-    //                CraftingStation.LOGGER.error("Bad recipe found: " + recipe.getId().toString());
-    //                CraftingStation.LOGGER.error(e.getMessage());
-    //                player.sendMessage(new TranslatableComponent("text.crafting_station.error", recipe.getId().toString()).withStyle(ChatFormatting.DARK_RED), Util.NIL_UUID);
-
     private void addOwnSlots() {
         // crafting result
         this.addSlot(new SlotFastCraft(this, this.craftMatrix, craftResult, 0, 124, 35, player, slots));

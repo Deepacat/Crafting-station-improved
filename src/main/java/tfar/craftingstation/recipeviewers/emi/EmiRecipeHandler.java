@@ -18,7 +18,7 @@ public class EmiRecipeHandler implements StandardRecipeHandler<CraftingStationMe
     @Override
     public List<Slot> getInputSources(CraftingStationMenu handler) {
         List<Slot> list = Lists.newArrayList();
-        for (int i = 10; i < handler.slots.size(); ++i) {
+        for (int i = 1; i < handler.slots.size(); ++i) {
             list.add(handler.getSlot(i));
         }
         return list;

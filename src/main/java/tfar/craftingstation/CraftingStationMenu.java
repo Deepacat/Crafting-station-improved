@@ -3,6 +3,8 @@ package tfar.craftingstation;
 import com.illusivesoulworks.polymorph.common.crafting.RecipeSelection;
 import net.minecraft.world.inventory.*;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.p3pp3rf1y.sophisticatedcore.common.gui.HighStackCountSynchronizer;
+import org.jetbrains.annotations.NotNull;
 import tfar.craftingstation.init.ModMenuTypes;
 import tfar.craftingstation.network.PacketHandler;
 import tfar.craftingstation.network.S2CLastRecipePacket;
@@ -633,5 +635,16 @@ public class CraftingStationMenu extends AbstractContainerMenu {
 
     public NonNullList<ItemStack> getRemainingItems() {
         return lastRecipe != null && lastRecipe.matches(craftMatrix, world) ? lastRecipe.getRemainingItems(craftMatrix) : craftMatrix.getStackList();
+    }
+
+    @Override
+    public void setSynchronizer(@NotNull ContainerSynchronizer pSynchronizer) {
+        if(ModList.get().isLoaded("sophisticatedcore")) {
+            if(pSynchronizer instanceof ServerPlayer serverPlayer) {
+                super.setSynchronizer(new HighStackCountSynchronizer(serverPlayer));
+            }
+        } else {
+            super.setSynchronizer(pSynchronizer);
+        }
     }
 }

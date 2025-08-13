@@ -128,6 +128,9 @@ dependencies {
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     implementation fg.deobf("dev.emi:emi-forge:${emi_version}")
 
+    implementation fg.deobf("curse.maven:sophisticated-core-618298:6859221")
+    implementation fg.deobf("curse.maven:sophisticated-storage-619320:6869026")
+
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
 }

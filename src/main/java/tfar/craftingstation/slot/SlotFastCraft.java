@@ -3,6 +3,7 @@ package tfar.craftingstation.slot;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+import net.minecraftforge.items.SlotItemHandler;
 import tfar.craftingstation.CraftingInventoryPersistant;
 import tfar.craftingstation.CraftingStationMenu;
 import net.minecraft.core.NonNullList;
@@ -88,8 +89,14 @@ public class SlotFastCraft extends ResultSlot {
                     } else if (playerInvMatchingIndex > 0) {
                         this.playerInventory.removeItem(playerInvMatchingIndex, 1);
                     } else if (sideInvMatchingIndex > 0) {
-                        this.sideSlots.get(sideInvMatchingIndex).getItem().shrink(1);
-                        this.sideSlots.get(sideInvMatchingIndex).container.setChanged();
+                        Slot sideSlot = this.sideSlots.get(sideInvMatchingIndex);
+                        // Use Slot.remove() which properly updates the underlying container
+                        sideSlot.remove(1);
+                        // Explicitly mark as changed - BigSlot.remove() should do this too,
+                        // but we call it again for safety
+                        sideSlot.setChanged();
+                        // Also mark via container's method as extra safety
+                        container.markSideInventoryChanged(sideInvMatchingIndex);
                     } else {
                         this.craftSlots.removeItem(i, 1);
                     }

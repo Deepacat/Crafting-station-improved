@@ -90,13 +90,8 @@ public class SlotFastCraft extends ResultSlot {
                         this.playerInventory.removeItem(playerInvMatchingIndex, 1);
                     } else if (sideInvMatchingIndex > 0) {
                         Slot sideSlot = this.sideSlots.get(sideInvMatchingIndex);
-                        // Use Slot.remove() which properly updates the underlying container
+                        // BigSlot.remove() properly marks the BlockEntity and chunk as dirty
                         sideSlot.remove(1);
-                        // Explicitly mark as changed - BigSlot.remove() should do this too,
-                        // but we call it again for safety
-                        sideSlot.setChanged();
-                        // Also mark via container's method as extra safety
-                        container.markSideInventoryChanged(sideInvMatchingIndex);
                     } else {
                         this.craftSlots.removeItem(i, 1);
                     }

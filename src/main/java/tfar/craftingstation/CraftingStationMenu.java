@@ -634,22 +634,4 @@ public class CraftingStationMenu extends AbstractContainerMenu {
     public NonNullList<ItemStack> getRemainingItems() {
         return lastRecipe != null && lastRecipe.matches(craftMatrix, world) ? lastRecipe.getRemainingItems(craftMatrix) : craftMatrix.getStackList();
     }
-
-    /**
-     * Marks the BlockEntity that owns the given slot index as changed/dirty.
-     * This ensures the BlockEntity's state is saved when the chunk unloads.
-     * @param slotIndex the slot index (should be a side inventory slot, i.e., >= 10)
-     */
-    public void markSideInventoryChanged(int slotIndex) {
-        if (tileEntities == null || containerStarts.isEmpty()) return;
-        for (int i = 0; i < containerStarts.size(); i++) {
-            Pair<Integer, Integer> range = containerStarts.get(i);
-            if (slotIndex >= range.getLeft() && slotIndex < range.getRight()) {
-                if (i < tileEntities.size()) {
-                    tileEntities.get(i).setChanged();
-                }
-                return;
-            }
-        }
-    }
 }

@@ -190,7 +190,7 @@ public class CraftingStationMenu extends AbstractContainerMenu {
                         int index = 6 * y + x;
                         if (index >= size) continue;
                         boolean hidden = y >= 9 || number != 0;
-                        SlotItemHandler wrapper = new BigSlot(h, index, 18 * x + xPos + offsetx, 18 * y + yPos);
+                        SlotItemHandler wrapper = new BigSlot(h, index, 18 * x + xPos + offsetx, 18 * y + yPos, te);
                         if (hidden) hideSlot(wrapper);
                         addSlot(wrapper);
                     }

@@ -3,6 +3,7 @@ package tfar.craftingstation.slot;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+import net.minecraftforge.items.SlotItemHandler;
 import tfar.craftingstation.CraftingInventoryPersistant;
 import tfar.craftingstation.CraftingStationMenu;
 import net.minecraft.core.NonNullList;
@@ -88,8 +89,9 @@ public class SlotFastCraft extends ResultSlot {
                     } else if (playerInvMatchingIndex > 0) {
                         this.playerInventory.removeItem(playerInvMatchingIndex, 1);
                     } else if (sideInvMatchingIndex > 0) {
-                        this.sideSlots.get(sideInvMatchingIndex).getItem().shrink(1);
-                        this.sideSlots.get(sideInvMatchingIndex).container.setChanged();
+                        Slot sideSlot = this.sideSlots.get(sideInvMatchingIndex);
+                        // BigSlot.remove() properly marks the BlockEntity and chunk as dirty
+                        sideSlot.remove(1);
                     } else {
                         this.craftSlots.removeItem(i, 1);
                     }

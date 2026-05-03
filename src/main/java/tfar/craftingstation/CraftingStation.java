@@ -37,6 +37,8 @@ public class CraftingStation {
     public static final String MODID = "craftingstation";
     public static final TagKey<BlockEntityType<?>> blacklisted
             = TagKey.create(Registries.BLOCK_ENTITY_TYPE, new ResourceLocation(MODID, "blacklisted"));
+    public static final TagKey<BlockEntityType<?>> whitelisted
+            = TagKey.create(Registries.BLOCK_ENTITY_TYPE, new ResourceLocation(MODID, "whitelisted"));
 
     public static final Logger LOGGER = LogManager.getLogger();
 

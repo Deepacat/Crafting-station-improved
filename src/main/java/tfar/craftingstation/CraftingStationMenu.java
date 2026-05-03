@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static tfar.craftingstation.Configs.Server.useWhitelist;
+
 public class CraftingStationMenu extends AbstractContainerMenu {
     private static final Method GET_TILE_ENTITY_METHOD;
 
@@ -123,6 +125,9 @@ public class CraftingStationMenu extends AbstractContainerMenu {
 
             BlockEntity te = world.getBlockEntity(neighbor);
             if (te != null && !(te instanceof CraftingStationBlockEntity)) {
+                // if whitelist is enabled and block is not whitelisted, skip checks entirely
+                if (useWhitelist.get() && !ForgeRegistries.BLOCK_ENTITY_TYPES.tags().getTag(CraftingStation.whitelisted).contains(te.getType()))
+                    continue;
                 // if blacklisted, skip checks entirely
                 if (ForgeRegistries.BLOCK_ENTITY_TYPES.tags().getTag(CraftingStation.blacklisted).contains(te.getType()))
                     continue;

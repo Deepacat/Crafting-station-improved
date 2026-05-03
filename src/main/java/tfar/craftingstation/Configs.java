@@ -21,7 +21,7 @@ public class Configs {
   public static class Server {
 
       public static ForgeConfigSpec.BooleanValue sideInventories;
-
+      public static ForgeConfigSpec.BooleanValue useWhitelist;
 
       Server(ForgeConfigSpec.Builder builder) {
           builder.push("general");
@@ -29,6 +29,10 @@ public class Configs {
                   .comment("Are side inventories displayed in the crafting grid?")
                   .translation("text.craftingstation.config.enable_side_inventories")
                   .define("display side inventories in crafting grid", true);
+          useWhitelist = builder
+                  .comment("Should Crafting Station only detect whitelisted blocks?")
+                  .translation("text.craftingstation.config.enable_whitelist")
+                  .define("use whitelist for detecting storage blocks", false);
           builder.pop();
       }
   }

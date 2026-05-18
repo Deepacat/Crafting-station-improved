@@ -13,11 +13,11 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookup, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput,lookup, CraftingStation.MODID, existingFileHelper);
+        super(packOutput, lookup, CraftingStation.MODID, existingFileHelper);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.crafting_station,ModBlocks.crafting_station_slab);
+        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.crafting_station, ModBlocks.crafting_station_slab);
     }
 }

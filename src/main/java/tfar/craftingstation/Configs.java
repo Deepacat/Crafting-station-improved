@@ -4,37 +4,36 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class Configs {
 
-	public static class Client {
+    public static class Client {
 
-      public static ForgeConfigSpec.BooleanValue showItemsInTable;
+        public static ForgeConfigSpec.BooleanValue showItemsInTable;
 
-    Client(ForgeConfigSpec.Builder builder) {
-      builder.push("general");
-      showItemsInTable = builder
-              .comment("Display Items in Table?")
-              .translation("text.craftingstation.config.displayitemsintable")
-              .define("display items in table", true);
-      builder.pop();
+        Client(ForgeConfigSpec.Builder builder) {
+            builder.push("general");
+            showItemsInTable = builder
+                    .comment("Display Items in Table?")
+                    .translation("text.craftingstation.config.displayitemsintable")
+                    .define("display items in table", true);
+            builder.pop();
+        }
     }
-  }
 
-  public static class Server {
+    public static class Server {
 
-      public static ForgeConfigSpec.BooleanValue sideInventories;
-      public static ForgeConfigSpec.BooleanValue useWhitelist;
+        public static ForgeConfigSpec.BooleanValue sideInventories;
+        public static ForgeConfigSpec.BooleanValue useWhitelist;
 
-      Server(ForgeConfigSpec.Builder builder) {
-          builder.push("general");
-          sideInventories = builder
-                  .comment("Are side inventories displayed in the crafting grid?")
-                  .translation("text.craftingstation.config.enable_side_inventories")
-                  .define("display side inventories in crafting grid", true);
-          useWhitelist = builder
-                  .comment("Should Crafting Station only detect whitelisted blocks?")
-                  .translation("text.craftingstation.config.enable_whitelist")
-                  .define("use whitelist for detecting storage blocks", false);
-          builder.pop();
-      }
-  }
-
+        Server(ForgeConfigSpec.Builder builder) {
+            builder.push("general");
+            sideInventories = builder
+                    .comment("Are side inventories displayed in the crafting grid?")
+                    .translation("text.craftingstation.config.enable_side_inventories")
+                    .define("display side inventories in crafting grid", true);
+            useWhitelist = builder
+                    .comment("Should Crafting Station only detect whitelisted blocks?")
+                    .translation("text.craftingstation.config.enable_whitelist")
+                    .define("use whitelist for detecting storage blocks", false);
+            builder.pop();
+        }
+    }
 }
